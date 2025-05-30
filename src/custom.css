@@ -1,0 +1,84 @@
+
+
+/* 🔥 Custom Styles */
+h1 { 
+  font-size: 32px;
+  font-weight: 700;
+  color: #2C3E50;
+  font-family: 'Playfair Display', serif;
+}
+
+@media (min-width: 512px) { 
+  h1 { font-size: 40px; }
+}
+
+@media (min-width: 1200px) { 
+  h1 { font-size: 44px; }
+}
+
+@media (min-width: 1500px) { 
+  h1 { font-size: 48px; }
+}
+
+/* h2 Styling */
+h2 { 
+  font-size: 28px;
+  font-weight: 500;
+  color: #2C3E50;
+  font-family: 'Playfair Display', serif;
+}
+
+@media (min-width: 512px) { h2 { font-size: 32px; } }
+@media (min-width: 1200px) { h2 { font-size: 34px; } }
+@media (min-width: 1500px) { h2 { font-size: 36px; } }
+
+/* Paragraph */
+p { 
+  font-size: 10px;
+  color: #0d1218;
+  font-family: 'Playfair Display', serif;
+}
+
+@media (min-width: 512px) { p { font-size: 12px; } }
+@media (min-width: 1024px) { p { font-size: 13px; } }
+@media (min-width: 1200px) { p { font-size: 15px; } }
+
+/* Utility Classes */
+.productmastertext {
+  font-size: 12px;
+  font-weight: 500;
+  color: #070a0e;
+  font-family: 'Playfair Display', serif;
+}
+
+.danger { background-color: #E74C3C; }
+.success { background-color: #2ECC71; }
+.secondary { background-color: #3062ec; }
+
+/* Button Animation */
+.scale-button {
+  transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.scale-animation {
+  animation: scaleEffect 0.5s ease-in-out;
+}
+
+@keyframes scaleEffect {
+  0% { transform: scale(1); }
+  25% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* Override Tailwind Base */
+@layer base {
+  html {
+    font-family: 'Lato', sans-serif;
+    color: #34495E;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Playfair Display', serif;
+    color: #2C3E50;
+  }
+}
