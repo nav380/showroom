@@ -1,6 +1,6 @@
 const dummy = [];
 
-for (let i = 1; i <= 1000; i++) {
+for (let i = 1; i <= 10000; i++) {
   const index = (i - 1) % 5; // To cycle through the options
   const productTypes = ["Shirt", "T-shirt", "Jeans", "Jacket", "Sweater"];
   const categories = ["Casual", "Sportswear", "Denim", "Outerwear", "Casual"];
