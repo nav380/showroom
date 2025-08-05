@@ -17,30 +17,78 @@ const Product = () => {
   const [imagefields, setImageFields] = useState([])
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        setLoading(true);
-        const data = await getItemById(id);
-        setProduct(data);
-        setCheckImage(data.main_image); // Set the main image
-        setImageFields([
-          { src: data.front_image, label: 'Front' },
-          { src: data.back_image, label: 'Back' },
-          { src: data.details_image, label: 'Details' },
-          { src: data.sleeve_image, label: 'Sleeve' },
-          { src: data.fabric_image, label: 'Fabric' },
-          { src: data.inspiration_image, label: 'Inspiration' },
-        ]);
-      } catch (err) {
-        setError("Failed to fetch product details.");
-      } finally {
-        setLoading(false);
+  const fetchProduct = async () => {
+    try {
+      setLoading(true);
+      const data = await getItemById(id);
 
+      if (!data || !data.product_code) {
+        throw new Error("No valid data received");
       }
-    };
 
-    fetchProduct();
-  }, [id]);
+      setProduct(data);
+      setCheckImage(data.main_image);
+      setImageFields([
+        { src: data.front_image, label: 'Front' },
+        { src: data.back_image, label: 'Back' },
+        { src: data.details_image, label: 'Details' },
+        { src: data.sleeve_image, label: 'Sleeve' },
+        { src: data.fabric_image, label: 'Fabric' },
+        { src: data.inspiration_image, label: 'Inspiration' },
+      ]);
+    } catch (err) {
+      console.error("Using dummy product due to error:", err);
+
+      const dummyProduct = {
+        product_code: "DUMMY001",
+        style_no: "STYLE123",
+        product_type: "Shirt",
+        category: "Men",
+        designer_head: "John Doe",
+        entered_by: "Admin",
+        season: "Summer 2025",
+        fabric: "Cotton",
+        value_driver: "Comfort",
+        sustainable: true,
+        designer_status: "Approved",
+        dmm_status: "Pending",
+        remarks: "Sample product for demo.",
+        comment: "Awaiting buyer confirmation.",
+        is_active: true,
+        buyer: "Zara",
+        dmm: "Jane Merchant",
+        status: "Approved",
+        selected_date: "2025-07-15",
+        order_qty: 500,
+        order_date: "2025-08-01",
+        main_image: "/images/dummy/main.jpg",
+        front_image: "/images/dummy/front.jpg",
+        back_image: "/images/dummy/back.jpg",
+        details_image: "/images/dummy/details.jpg",
+        sleeve_image: "/images/dummy/sleeve.jpg",
+        fabric_image: "/images/dummy/fabric.jpg",
+        inspiration_image: "/images/dummy/inspiration.jpg",
+      };
+
+      setProduct(dummyProduct);
+      setCheckImage(dummyProduct.main_image);
+      setImageFields([
+        { src: dummyProduct.front_image, label: 'Front' },
+        { src: dummyProduct.back_image, label: 'Back' },
+        { src: dummyProduct.details_image, label: 'Details' },
+        { src: dummyProduct.sleeve_image, label: 'Sleeve' },
+        { src: dummyProduct.fabric_image, label: 'Fabric' },
+        { src: dummyProduct.inspiration_image, label: 'Inspiration' },
+      ]);
+
+      setError("Dummy data loaded due to fetch error.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchProduct();
+}, [id]);
 
 
 
