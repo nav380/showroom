@@ -22,23 +22,26 @@ const Product = () => {
       setLoading(true);
       const data = await getItemById(id);
 
+      // Check if response is valid
       if (!data || !data.product_code) {
-        throw new Error("No valid data received");
+        throw new Error("Invalid data received from API");
       }
 
+      // Use real product data
       setProduct(data);
       setCheckImage(data.main_image);
       setImageFields([
-        { src: data.front_image, label: 'Front' },
-        { src: data.back_image, label: 'Back' },
-        { src: data.details_image, label: 'Details' },
-        { src: data.sleeve_image, label: 'Sleeve' },
-        { src: data.fabric_image, label: 'Fabric' },
-        { src: data.inspiration_image, label: 'Inspiration' },
+        { src: data.front_image, label: "Front" },
+        { src: data.back_image, label: "Back" },
+        { src: data.details_image, label: "Details" },
+        { src: data.sleeve_image, label: "Sleeve" },
+        { src: data.fabric_image, label: "Fabric" },
+        { src: data.inspiration_image, label: "Inspiration" },
       ]);
     } catch (err) {
-      console.error("Using dummy product due to error:", err);
+      console.warn("API failed, using dummy product:", err);
 
+      // Fallback dummy data
       const dummyProduct = {
         product_code: "DUMMY001",
         style_no: "STYLE123",
@@ -73,15 +76,15 @@ const Product = () => {
       setProduct(dummyProduct);
       setCheckImage(dummyProduct.main_image);
       setImageFields([
-        { src: dummyProduct.front_image, label: 'Front' },
-        { src: dummyProduct.back_image, label: 'Back' },
-        { src: dummyProduct.details_image, label: 'Details' },
-        { src: dummyProduct.sleeve_image, label: 'Sleeve' },
-        { src: dummyProduct.fabric_image, label: 'Fabric' },
-        { src: dummyProduct.inspiration_image, label: 'Inspiration' },
+        { src: dummyProduct.front_image, label: "Front" },
+        { src: dummyProduct.back_image, label: "Back" },
+        { src: dummyProduct.details_image, label: "Details" },
+        { src: dummyProduct.sleeve_image, label: "Sleeve" },
+        { src: dummyProduct.fabric_image, label: "Fabric" },
+        { src: dummyProduct.inspiration_image, label: "Inspiration" },
       ]);
 
-      setError("Dummy data loaded due to fetch error.");
+      setError("Failed to fetch from API — dummy data loaded.");
     } finally {
       setLoading(false);
     }
